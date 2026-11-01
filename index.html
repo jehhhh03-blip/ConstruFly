@@ -478,6 +478,11 @@
             <input type="checkbox" id="consent" name="consent" required>
             Autorizo a ConstruFly a entrar em contato pelos dados informados, conforme a LGPD.
           </label>
+          <!-- Campo anti-spam: fica invisível para pessoas; robôs costumam preencher -->
+          <div style="position:absolute; left:-9999px;" aria-hidden="true">
+            <label for="site">Não preencha este campo</label>
+            <input id="site" name="site" type="text" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
           <button type="submit" class="btn btn-primary" id="submitBtn">Quero saber mais sobre o 2º ciclo</button>
         </form>
@@ -527,9 +532,8 @@
   </footer>
 
   <script>
-    // Para receber os envios, coloque aqui a URL de um serviço de formulários
-    // (ex.: Formspree, Getform, Google Apps Script ou a sua própria API).
-    // Os dados são enviados via POST em JSON.
+    // URL do App da Web do Google Apps Script que grava os cadastros na planilha.
+    // Veja o passo a passo em FORMULARIO.md.
     const FORM_ENDPOINT = "";
 
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -603,19 +607,15 @@
       data.origem = "Lista de interesse - 2º ciclo";
       btn.disabled = true; btn.textContent = "Enviando...";
       try {
-        if (FORM_ENDPOINT) {
-          const res = await fetch(FORM_ENDPOINT, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "Accept": "application/json" },
-            body: JSON.stringify(data)
-          });
-          if (!res.ok) throw new Error("Falha no envio");
-        } else {
-          console.warn("FORM_ENDPOINT não configurado. Dados do formulário:", data);
-        }
+        if (!FORM_ENDPOINT) throw new Error("FORM_ENDPOINT não configurado");
+        // Enviado como texto simples para o Google Apps Script aceitar sem bloqueio de CORS.
+        const res = await fetch(FORM_ENDPOINT, { method: "POST", body: JSON.stringify(data) });
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok || !out.ok) throw new Error(out.error || "Falha no envio");
         form.reset();
         showMsg("ok", "Pronto! Você está na lista de interesse do 2º ciclo. Em breve entraremos em contato com todas as novidades.");
       } catch (err) {
+        console.error(err);
         showMsg("err", "Não foi possível enviar agora. Tente novamente em alguns minutos.");
       } finally {
         btn.disabled = false; btn.textContent = "Quero saber mais sobre o 2º ciclo";

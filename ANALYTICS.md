@@ -16,7 +16,7 @@ A página já está preparada para o Google Analytics 4. Falta só o **ID de med
 4. Copie o **ID de medição**, no formato `G-XXXXXXXXXX`.
 
 ## 3. Colocar o ID na página
-No `index.html`, a linha `window.GA_ID = "G-GM9326ZW2S";` já está configurada (ID atual da ConstruFly).
+No `index.html`, troque `window.GA_ID = "";` por `window.GA_ID = "G-XXXXXXXXXX";`.
 
 ## O que é medido
 - **Visitas e visitantes** (relatórios padrão do GA4).

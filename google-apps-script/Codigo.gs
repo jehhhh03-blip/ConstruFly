@@ -44,6 +44,9 @@ function doPost(e) {
       limpar(dados.origem)
     ]);
 
+    // Aviso no WhatsApp (arquivo WhatsApp.gs). Não faz nada se não estiver configurado.
+    if (typeof avisarWhatsApp === 'function') avisarWhatsApp(dados);
+
     if (EMAIL_AVISO) {
       MailApp.sendEmail({
         to: EMAIL_AVISO,

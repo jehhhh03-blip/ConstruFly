@@ -61,3 +61,34 @@ escolha **Nova versão** e clique em **Implantar**. Assim a URL continua a mesma
 - Compartilhe a planilha só com quem precisa ver os contatos.
 - Use os dados apenas para falar sobre a ConstruFly, como informado no formulário.
 - Se alguém pedir para sair da lista, apague a linha da pessoa.
+
+## Aviso no WhatsApp a cada cadastro (opcional)
+
+O aviso usa o [CallMeBot](https://www.callmebot.com/blog/free-api-whatsapp-messages/), serviço gratuito
+para uso pessoal que manda mensagens para o **seu próprio número**.
+
+### 1. Pegar a chave (apikey)
+1. No site do CallMeBot, veja o número atual do robô e salve-o nos contatos do celular.
+2. Mande para esse contato, pelo WhatsApp, a mensagem: `I allow callmebot to send me messages`
+3. Em até 2 minutos chega a resposta "API Activated for your phone number", com a sua **apikey**.
+   Se não chegar, tente de novo após 24 horas.
+
+### 2. Adicionar o arquivo no Apps Script
+1. No editor do Apps Script, toque no **+** ao lado de "Arquivos" > **Script** e dê o nome `WhatsApp`.
+2. Apague o conteúdo de exemplo e cole o conteúdo de [`google-apps-script/WhatsApp.gs`](google-apps-script/WhatsApp.gs).
+3. Preencha `WHATSAPP_NUMERO` (ex.: `'5511987654321'`) e `WHATSAPP_APIKEY`.
+4. No arquivo `Código.gs`, logo depois da linha `]);` que fecha o `aba.appendRow([...`, adicione:
+   ```js
+   if (typeof avisarWhatsApp === 'function') avisarWhatsApp(dados);
+   ```
+5. Salve.
+
+### 3. Autorizar e testar
+1. No seletor de funções ao lado de "Executar", escolha **testarWhatsApp** e toque em **Executar**.
+2. Autorize de novo (o script agora acessa um serviço externo). Você deve receber uma mensagem de teste.
+
+### 4. Publicar a nova versão
+**Implantar > Gerenciar implantações** > lápis > Versão: **Nova versão** > **Implantar**. A URL continua a mesma.
+
+Observações: o aviso passa os dados do cadastro pelo CallMeBot, um serviço de terceiros.
+Se o CallMeBot falhar, o cadastro continua sendo gravado na planilha normalmente.

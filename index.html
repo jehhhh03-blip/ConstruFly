@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ConstruFly | Clube de Negócios para Empresários</title>
-  <meta name="description" content="ConstruFly: educação, networking e mentoria para empresários que querem crescer com método e boas conexões.">
+  <title>ConstruFly | 2º ciclo começa em 07/01/2027</title>
+  <meta name="description" content="Lançamento do 2º ciclo da ConstruFly, comunidade de empresários. Cadastre seu interesse e saiba como será o próximo ciclo.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="theme-color" content="#012e71">
-  <meta property="og:title" content="ConstruFly | Clube de Negócios para Empresários">
-  <meta property="og:description" content="Educação, networking e mentoria para empresários que querem crescer com método e boas conexões.">
+  <meta property="og:title" content="ConstruFly | 2º ciclo começa em 07/01/2027">
+  <meta property="og:description" content="Lançamento do 2º ciclo da ConstruFly, comunidade de empresários. Cadastre seu interesse e saiba como será o próximo ciclo.">
   <meta property="og:image" content="assets/og-image.png">
   <style>
     :root {
@@ -256,6 +256,41 @@
       html { scroll-behavior: auto; }
     }
 
+    /* Card de lançamento + contagem regressiva */
+    .launch-card {
+      background: #fff; color: var(--text); border-radius: 22px; padding: 30px;
+      box-shadow: 0 30px 80px rgba(0, 10, 40, .45); border-top: 6px solid var(--green);
+    }
+    .launch-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+    .launch-badge {
+      font-family: "Barlow Condensed"; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      background: var(--navy); color: #fff; padding: 6px 14px; border-radius: 999px; font-size: .9rem;
+    }
+    .launch-date { font-family: "Barlow Condensed"; font-weight: 800; font-size: 1.9rem; color: var(--navy); letter-spacing: .02em; }
+    .launch-label { font-family: "Barlow Condensed"; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--green-text); font-size: .95rem; margin-bottom: 10px; }
+    .countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 24px; }
+    .countdown div {
+      background: var(--bg-alt); border: 1px solid var(--line); border-radius: 12px; padding: 14px 4px; text-align: center;
+    }
+    .countdown b { display: block; font-family: "Barlow Condensed"; font-weight: 800; font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1; color: var(--navy); font-variant-numeric: tabular-nums; }
+    .countdown span { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+    .countdown.done { display: none; }
+    .launch-btn { width: 100%; }
+    .launch-note { display: block; text-align: center; color: var(--muted); font-size: .88rem; margin-top: 12px; }
+    .perks { list-style: none; position: relative; z-index: 1; display: grid; gap: 16px; margin-top: 18px; }
+    .perks li { display: flex; gap: 12px; font-size: 1.15rem; line-height: 1.45; }
+    .perks li::before { content: ""; flex: none; width: 14px; height: 14px; margin-top: 6px; background: var(--green-light); clip-path: var(--octagon); }
+    .interests { border: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+    .interests legend { font-size: .92rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; float: left; width: 100%; }
+    .chip { position: relative; cursor: pointer; }
+    .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .chip span {
+      display: inline-block; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line);
+      background: var(--bg-alt); color: var(--text); font-weight: 500; font-size: .95rem; transition: all .15s;
+    }
+    .chip input:checked + span { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .chip input:focus-visible + span { box-shadow: 0 0 0 3px rgba(1,46,113,.25); }
+
     @media (max-width: 980px) {
       .hero-grid, .split, .apply-grid { grid-template-columns: 1fr; }
       .pillars { grid-template-columns: repeat(2, 1fr); }
@@ -286,12 +321,11 @@
         <span class="wordmark">CONSTRU<em>Fly</em></span>
       </a>
       <nav class="nav-links" id="navLinks">
-        <a href="#pilares">O clube</a>
+        <a href="#objetivos">Objetivos</a>
         <a href="#para-quem">Para quem é</a>
-        <a href="#como-funciona">Como funciona</a>
         <a href="#faq">Dúvidas</a>
       </nav>
-      <a href="#aplicar" class="btn btn-primary">Quero participar</a>
+      <a href="#interesse" class="btn btn-primary">Quero saber mais</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -299,82 +333,69 @@
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- HERO / LANÇAMENTO -->
     <section class="hero">
       <span class="octa o1"></span><span class="octa o2"></span><span class="octa o3"></span>
       <div class="container hero-grid">
         <div class="reveal">
-          <span class="eyebrow">Clube de negócios para empresários</span>
-          <h1>Construa uma empresa que <span class="fly">voa</span> mais alto, cercado de quem já chegou lá.</h1>
-          <p class="lead">A ConstruFly reúne educação prática, mentoria e uma comunidade de empresários para você tomar decisões melhores, crescer com método e não caminhar sozinho.</p>
+          <span class="eyebrow">Lançamento · 2º ciclo</span>
+          <h1>O 2º ciclo da ConstruFly <span class="fly">decola</span> em 07 de janeiro.</h1>
+          <p class="lead">Uma comunidade de empresários que aprendem, trocam experiências e crescem juntos. Cadastre seu interesse e receba em primeira mão como será o próximo ciclo.</p>
           <div class="hero-ctas">
-            <a href="#aplicar" class="btn btn-primary">
-              Quero fazer parte
+            <a href="#interesse" class="btn btn-primary">
+              Quero saber mais
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a href="#como-funciona" class="btn btn-ghost">Como funciona</a>
-          </div>
-          <div class="hero-tags">
-            <span class="tag">Gestão</span>
-            <span class="tag">Vendas</span>
-            <span class="tag">Finanças</span>
-            <span class="tag">Liderança</span>
-            <span class="tag">Networking</span>
+            <a href="#objetivos" class="btn btn-ghost">Conheça a comunidade</a>
           </div>
         </div>
 
-        <aside class="hero-card reveal" aria-label="Exemplo da agenda do clube">
-          <h3><span class="dot"></span> Agenda do mês no clube</h3>
-          <ul class="agenda">
-            <li>
-              <div class="date"><b>05</b>SEMANA 1</div>
-              <div><strong>Aula: Fluxo de caixa sem mistério</strong><small>Encontro online ao vivo</small></div>
-            </li>
-            <li>
-              <div class="date"><b>12</b>SEMANA 2</div>
-              <div><strong>Mesa de mentoria em grupo</strong><small>Casos reais dos membros</small></div>
-            </li>
-            <li>
-              <div class="date"><b>19</b>SEMANA 3</div>
-              <div><strong>Encontro presencial de networking</strong><small>Conexões e parcerias</small></div>
-            </li>
-            <li>
-              <div class="date"><b>26</b>SEMANA 4</div>
-              <div><strong>Workshop: Time comercial que vende</strong><small>Ferramentas para aplicar</small></div>
-            </li>
-          </ul>
+        <aside class="launch-card reveal" aria-label="Contagem regressiva para o 2º ciclo">
+          <div class="launch-top">
+            <span class="launch-badge">2º ciclo</span>
+            <span class="launch-date">07.01.2027</span>
+          </div>
+          <p class="launch-label" id="cdLabel">Faltam</p>
+          <div class="countdown" id="countdown">
+            <div><b id="cdD">--</b><span>dias</span></div>
+            <div><b id="cdH">--</b><span>horas</span></div>
+            <div><b id="cdM">--</b><span>min</span></div>
+            <div><b id="cdS">--</b><span>seg</span></div>
+          </div>
+          <a href="#interesse" class="btn btn-primary launch-btn">Entrar na lista de interesse</a>
+          <small class="launch-note">Sem compromisso. Você recebe as novidades antes de todo mundo.</small>
         </aside>
       </div>
     </section>
 
-    <!-- PILARES -->
-    <section id="pilares">
+    <!-- OBJETIVOS -->
+    <section id="objetivos">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">O clube</span>
-          <h2>Quatro pilares para acelerar o seu negócio</h2>
-          <p>Conhecimento sem aplicação não muda resultado. Por isso cada pilar foi pensado para virar ação dentro da sua empresa.</p>
+          <span class="eyebrow">Nossos objetivos</span>
+          <h2>Por que a ConstruFly existe</h2>
+          <p>Empreender pode ser solitário. A ConstruFly nasceu para reunir empresários em torno de quatro objetivos.</p>
         </div>
         <div class="pillars">
           <article class="card reveal">
             <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4z"/><path d="M6 9v5c0 1.7 2.7 3 6 3s6-1.3 6-3V9"/></svg></div>
-            <h3>Educação prática</h3>
-            <p>Aulas e trilhas sobre gestão, finanças, vendas e pessoas, com ferramentas prontas para aplicar.</p>
+            <h3>Educar</h3>
+            <p>Levar conhecimento prático de gestão, finanças, vendas e liderança para dentro das empresas.</p>
           </article>
           <article class="card reveal">
             <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M15 14.6c2.8-.3 5 1.4 6.5 4.9"/></svg></div>
-            <h3>Comunidade</h3>
-            <p>Um grupo selecionado de empresários para trocar experiências, indicações e oportunidades.</p>
+            <h3>Conectar</h3>
+            <p>Criar um ambiente de confiança entre empresários para trocar experiências, indicações e oportunidades.</p>
           </article>
           <article class="card reveal">
             <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h6M9 14h4"/></svg></div>
-            <h3>Mentoria</h3>
-            <p>Encontros em grupo com mentores experientes para destravar os desafios reais do seu negócio.</p>
+            <h3>Desenvolver</h3>
+            <p>Apoiar o crescimento de cada membro com mentoria e troca sobre os desafios reais do negócio.</p>
           </article>
           <article class="card reveal">
-            <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></div>
-            <h3>Eventos e networking</h3>
-            <p>Encontros presenciais, imersões e visitas para criar conexões que viram parcerias e negócios.</p>
+            <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+            <h3>Crescer juntos</h3>
+            <p>Gerar parcerias e negócios entre os membros, para que toda a comunidade voe mais alto.</p>
           </article>
         </div>
       </div>
@@ -395,73 +416,28 @@
         </div>
         <div class="reveal">
           <div class="quote-box">
-            <p>"Ninguém constrói nada grande sozinho. O ambiente certo encurta anos de tentativa e erro."</p>
-            <small>Manifesto ConstruFly</small>
+            <small>Ao entrar na lista de interesse</small>
+            <ul class="perks">
+              <li>Você recebe em primeira mão como será o 2º ciclo.</li>
+              <li>Nossa equipe entra em contato para tirar suas dúvidas.</li>
+              <li>Você é avisado assim que as inscrições abrirem.</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- COMO FUNCIONA -->
-    <section id="como-funciona">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Como funciona</span>
-          <h2>Do primeiro contato à sua primeira reunião no clube</h2>
-          <p>O ingresso é por candidatura, para garantir um grupo alinhado e conversas de alto nível.</p>
-        </div>
-        <div class="steps">
-          <div class="step reveal">
-            <h3>Envie sua candidatura</h3>
-            <p>Preencha o formulário com seus dados e conte um pouco sobre a sua empresa e seus objetivos.</p>
-          </div>
-          <div class="step reveal">
-            <h3>Conversa de alinhamento</h3>
-            <p>Nossa equipe entra em contato para entender o seu momento e apresentar a proposta ideal.</p>
-          </div>
-          <div class="step reveal">
-            <h3>Comece a crescer</h3>
-            <p>Acesso às aulas, mentorias, comunidade e à agenda de eventos já no primeiro mês.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DEPOIMENTOS (substitua pelos depoimentos reais dos membros) -->
-    <section class="alt">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Depoimentos</span>
-          <h2>O que dizem os membros</h2>
-        </div>
-        <div class="testimonials">
-          <figure class="card testimonial reveal">
-            <p>"Depoimento do membro sobre o que mudou na empresa depois de entrar no clube."</p>
-            <figcaption class="person"><span class="avatar">NM</span><div><strong>Nome do Membro</strong><small>Empresa · Segmento</small></div></figcaption>
-          </figure>
-          <figure class="card testimonial reveal">
-            <p>"Depoimento do membro sobre as conexões e parcerias geradas na comunidade."</p>
-            <figcaption class="person"><span class="avatar">NM</span><div><strong>Nome do Membro</strong><small>Empresa · Segmento</small></div></figcaption>
-          </figure>
-          <figure class="card testimonial reveal">
-            <p>"Depoimento do membro sobre as mentorias e o aprendizado aplicado no negócio."</p>
-            <figcaption class="person"><span class="avatar">NM</span><div><strong>Nome do Membro</strong><small>Empresa · Segmento</small></div></figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMULÁRIO -->
-    <section id="aplicar">
+    <!-- FORMULÁRIO DE INTERESSE -->
+    <section id="interesse">
       <div class="container apply-grid">
         <div class="apply-info reveal">
           <img class="logo-full" src="assets/logo-construfly.png" alt="ConstruFly">
-          <span class="eyebrow">Candidatura</span>
-          <h2 class="h2">Solicite sua proposta para entrar no clube</h2>
-          <p style="color: var(--muted); font-size: 1.08rem;">Preencha os dados ao lado. Nossa equipe analisa sua candidatura e entra em contato com uma proposta personalizada para o momento da sua empresa.</p>
+          <span class="eyebrow">Lista de interesse · 2º ciclo</span>
+          <h2 class="h2">Quero saber mais sobre o próximo ciclo</h2>
+          <p style="color: var(--muted); font-size: 1.1rem;">Deixe seus dados e conte um pouco sobre você. Vamos enviar todas as informações do 2º ciclo, que começa em <strong style="color: var(--navy);">07 de janeiro de 2027</strong>.</p>
           <ul>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Sem compromisso</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Retorno em até 2 dias úteis</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Novidades em primeira mão</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Seus dados ficam protegidos</li>
           </ul>
         </div>
@@ -472,12 +448,12 @@
             <input id="nome" name="nome" type="text" autocomplete="name" required>
           </div>
           <div class="field">
-            <label for="email">E-mail *</label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-          </div>
-          <div class="field">
             <label for="whatsapp">WhatsApp *</label>
             <input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" placeholder="(00) 00000-0000" required>
+          </div>
+          <div class="field">
+            <label for="email">E-mail *</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
           </div>
           <div class="field">
             <label for="empresa">Empresa *</label>
@@ -487,38 +463,23 @@
             <label for="segmento">Segmento</label>
             <input id="segmento" name="segmento" type="text" placeholder="Ex.: construção, varejo, serviços">
           </div>
-          <div class="field">
-            <label for="faturamento">Faturamento mensal *</label>
-            <select id="faturamento" name="faturamento" required>
-              <option value="">Selecione</option>
-              <option>Até R$ 50 mil</option>
-              <option>R$ 50 mil a R$ 200 mil</option>
-              <option>R$ 200 mil a R$ 500 mil</option>
-              <option>R$ 500 mil a R$ 1 milhão</option>
-              <option>Acima de R$ 1 milhão</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="colaboradores">Nº de colaboradores</label>
-            <select id="colaboradores" name="colaboradores">
-              <option value="">Selecione</option>
-              <option>1 a 5</option>
-              <option>6 a 20</option>
-              <option>21 a 50</option>
-              <option>51 a 100</option>
-              <option>Mais de 100</option>
-            </select>
-          </div>
+          <fieldset class="field full interests">
+            <legend>O que mais te interessa na comunidade?</legend>
+            <label class="chip"><input type="checkbox" name="interesses" value="Educação e conteúdo"><span>Educação e conteúdo</span></label>
+            <label class="chip"><input type="checkbox" name="interesses" value="Networking"><span>Networking</span></label>
+            <label class="chip"><input type="checkbox" name="interesses" value="Mentoria"><span>Mentoria</span></label>
+            <label class="chip"><input type="checkbox" name="interesses" value="Parcerias e negócios"><span>Parcerias e negócios</span></label>
+          </fieldset>
           <div class="field full">
-            <label for="objetivo">Qual o seu principal desafio ou objetivo hoje?</label>
-            <textarea id="objetivo" name="objetivo" placeholder="Conte em poucas linhas o que você quer conquistar com o clube"></textarea>
+            <label for="mensagem">Quer deixar alguma pergunta ou comentário?</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Opcional"></textarea>
           </div>
           <label class="consent">
             <input type="checkbox" id="consent" name="consent" required>
             Autorizo a ConstruFly a entrar em contato pelos dados informados, conforme a LGPD.
           </label>
           <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
-          <button type="submit" class="btn btn-primary" id="submitBtn">Enviar candidatura</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">Quero saber mais sobre o 2º ciclo</button>
         </form>
       </div>
     </section>
@@ -528,36 +489,25 @@
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Dúvidas frequentes</span>
-          <h2>Perguntas que todo empresário faz</h2>
+          <h2>Perguntas sobre o 2º ciclo</h2>
         </div>
         <div class="faq">
           <details class="reveal">
+            <summary>Quando começa o 2º ciclo?</summary>
+            <p>O lançamento do 2º ciclo da ConstruFly acontece em 07 de janeiro de 2027.</p>
+          </details>
+          <details class="reveal">
+            <summary>Preencher o formulário garante minha vaga?</summary>
+            <p>Não. O formulário registra o seu interesse para que você receba as informações do próximo ciclo em primeira mão. Não há nenhum compromisso.</p>
+          </details>
+          <details class="reveal">
+            <summary>Como vou receber as informações?</summary>
+            <p>Nossa equipe entra em contato pelo WhatsApp e pelo e-mail que você informar no formulário.</p>
+          </details>
+          <details class="reveal">
             <summary>Preciso ter uma empresa grande para participar?</summary>
-            <p>Não. O clube é para empresários em diferentes fases. Na conversa de alinhamento avaliamos se o momento da sua empresa combina com o grupo.</p>
+            <p>Não. A comunidade é para empresários em diferentes fases. Cadastre seu interesse e conversamos sobre o seu momento.</p>
           </details>
-          <details class="reveal">
-            <summary>Os encontros são online ou presenciais?</summary>
-            <p>Os dois. Aulas e mentorias acontecem online ao vivo, e os eventos de networking e imersões são presenciais.</p>
-          </details>
-          <details class="reveal">
-            <summary>Quanto custa para participar?</summary>
-            <p>O investimento depende do plano e do formato escolhido. Após a candidatura enviamos uma proposta personalizada.</p>
-          </details>
-          <details class="reveal">
-            <summary>Quanto tempo preciso dedicar por mês?</summary>
-            <p>Em média de 4 a 6 horas por mês já permitem aproveitar aulas, mentorias e encontros. Todo o conteúdo fica gravado.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section>
-      <div class="container">
-        <div class="cta-band reveal">
-          <h2>O próximo nível da sua empresa <span class="fly">começa aqui.</span></h2>
-          <p>Faça parte de uma comunidade de empresários que crescem juntos.</p>
-          <a href="#aplicar" class="btn btn-primary">Enviar minha candidatura</a>
         </div>
       </div>
     </section>
@@ -568,9 +518,9 @@
       <a href="#" class="logo"><img src="assets/logo-simbolo.png" alt="" width="46" height="46">
         <span class="wordmark">CONSTRU<em>Fly</em></span></a>
       <div class="foot-links">
-        <a href="#pilares">O clube</a>
+        <a href="#objetivos">Objetivos</a>
         <a href="#faq">Dúvidas</a>
-        <a href="#aplicar">Candidatura</a>
+        <a href="#interesse">Lista de interesse</a>
       </div>
       <small>© <span id="year"></span> ConstruFly. Todos os direitos reservados.</small>
     </div>
@@ -583,6 +533,24 @@
     const FORM_ENDPOINT = "";
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Contagem regressiva para o lançamento do 2º ciclo (07/01/2027, horário de Brasília)
+    const LAUNCH = new Date("2027-01-07T00:00:00-03:00").getTime();
+    const cd = document.getElementById("countdown");
+    const pad = n => String(n).padStart(2, "0");
+    function tick() {
+      const diff = LAUNCH - Date.now();
+      if (diff <= 0) {
+        cd.classList.add("done");
+        document.getElementById("cdLabel").textContent = "O 2º ciclo já começou!";
+        return clearInterval(timer);
+      }
+      document.getElementById("cdD").textContent = Math.floor(diff / 864e5);
+      document.getElementById("cdH").textContent = pad(Math.floor(diff / 36e5) % 24);
+      document.getElementById("cdM").textContent = pad(Math.floor(diff / 6e4) % 60);
+      document.getElementById("cdS").textContent = pad(Math.floor(diff / 1e3) % 60);
+    }
+    const timer = setInterval(tick, 1000); tick();
 
     // Menu mobile
     const toggle = document.getElementById("menuToggle");
@@ -629,7 +597,10 @@
       if (phone.value.replace(/\D/g, "").length < 10) { phone.classList.add("invalid"); valid = false; }
       if (!valid) { showMsg("err", "Confira os campos obrigatórios e o aceite de contato."); return; }
 
-      const data = Object.fromEntries(new FormData(form).entries());
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
+      data.interesses = fd.getAll("interesses").join(", ");
+      data.origem = "Lista de interesse - 2º ciclo";
       btn.disabled = true; btn.textContent = "Enviando...";
       try {
         if (FORM_ENDPOINT) {
@@ -643,11 +614,11 @@
           console.warn("FORM_ENDPOINT não configurado. Dados do formulário:", data);
         }
         form.reset();
-        showMsg("ok", "Candidatura enviada! Em breve nossa equipe entra em contato pelo seu WhatsApp.");
+        showMsg("ok", "Pronto! Você está na lista de interesse do 2º ciclo. Em breve entraremos em contato com todas as novidades.");
       } catch (err) {
         showMsg("err", "Não foi possível enviar agora. Tente novamente em alguns minutos.");
       } finally {
-        btn.disabled = false; btn.textContent = "Enviar candidatura";
+        btn.disabled = false; btn.textContent = "Quero saber mais sobre o 2º ciclo";
       }
     });
     form.querySelectorAll("input, select").forEach(el => el.addEventListener("input", () => el.classList.remove("invalid")));

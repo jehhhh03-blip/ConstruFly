@@ -312,16 +312,32 @@
     .chip input:checked + span { background: var(--navy); border-color: var(--navy); color: #fff; }
     .chip input:focus-visible + span { box-shadow: 0 0 0 3px rgba(1,46,113,.25); }
 
-    /* Galeria de fotos */
-    .galeria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .foto { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--bg-alt); aspect-ratio: 4 / 3; }
-    .foto.destaque { grid-column: 1 / -1; aspect-ratio: 21 / 10; }
-    .foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-    .foto.destaque img { object-position: center 45%; }
-    .foto:hover img { transform: scale(1.03); }
+    /* Líderes */
+    #lideres { overflow: hidden; }
+    .lideres { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: center; }
+    .lideres-foto { margin: 0; position: relative; max-width: 480px; }
+    .lideres-foto::before {
+      content: ""; position: absolute; width: 70%; aspect-ratio: 1; right: -36px; bottom: -36px;
+      background: var(--green); opacity: .16; clip-path: var(--octagon);
+    }
+    .lideres-foto img { position: relative; width: 100%; height: auto; border-radius: 20px; box-shadow: var(--shadow); }
+    .lideres-intro { color: var(--muted); font-size: 1.12rem; margin: 14px 0 28px; max-width: 560px; }
+    .lider-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .lider {
+      display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: var(--radius);
+      background: var(--bg-alt); border: 1px solid var(--line);
+    }
+    .lider-mark {
+      flex: none; width: 52px; height: 52px; clip-path: var(--octagon); background: var(--navy); color: #fff;
+      display: grid; place-items: center; font-family: "Barlow Condensed"; font-weight: 800; font-size: 1.5rem;
+    }
+    .lider h3 { font-size: 1.45rem; margin-bottom: 2px; }
+    .lider p { color: var(--muted); font-size: .95rem; }
 
     @media (max-width: 980px) {
-      .hero-grid, .split, .apply-grid { grid-template-columns: 1fr; }
+      .hero-grid, .split, .apply-grid, .lideres { grid-template-columns: 1fr; }
+      .lideres { gap: 48px; }
+      .lideres-foto { margin: 0 auto; }
       .pillars { grid-template-columns: repeat(2, 1fr); }
       .steps, .testimonials { grid-template-columns: 1fr; }
     }
@@ -335,8 +351,7 @@
         background: #fff; border-bottom: 1px solid var(--line); padding: 20px; gap: 18px;
       }
       .pillars { grid-template-columns: 1fr; }
-      .galeria { grid-template-columns: 1fr; gap: 12px; }
-      .foto, .foto.destaque { aspect-ratio: 3 / 2; }
+      .lider-cards { grid-template-columns: 1fr; }
       form { grid-template-columns: 1fr; padding: 24px; }
       .cta-band { padding: 56px 22px; }
       .hero .octa.o1 { width: 340px; } .hero .octa.o2 { width: 220px; }
@@ -480,27 +495,32 @@
       </div>
     </section>
 
-    <!-- FOTOS DO 1º CICLO -->
-    <section id="fotos">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">1º ciclo</span>
-          <h2>Como foi o 1º ciclo</h2>
-          <p>Alguns momentos da comunidade ConstruFly. No 2º ciclo, você pode fazer parte da próxima foto.</p>
-        </div>
-        <div class="galeria">
-          <figure class="foto destaque reveal">
-            <img src="assets/fotos/grupo-1600.webp" srcset="assets/fotos/grupo-800.webp 800w, assets/fotos/grupo-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 1120px" alt="Membros e organizadoras da ConstruFly reunidos em frente ao telão com o logotipo" width="1600" height="1067" loading="lazy" decoding="async">
-          </figure>
-          <figure class="foto reveal">
-            <img src="assets/fotos/apresentacao-1600.webp" srcset="assets/fotos/apresentacao-800.webp 800w, assets/fotos/apresentacao-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 370px" alt="Organizadoras da ConstruFly apresentando o encontro ao microfone" width="1600" height="1067" loading="lazy" decoding="async">
-          </figure>
-          <figure class="foto reveal">
-            <img src="assets/fotos/anfitrias-1600.webp" srcset="assets/fotos/anfitrias-800.webp 800w, assets/fotos/anfitrias-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 370px" alt="Duas organizadoras da ConstruFly em frente ao telão com o logotipo" width="1600" height="1067" loading="lazy" decoding="async">
-          </figure>
-          <figure class="foto reveal">
-            <img src="assets/fotos/abraco-1600.webp" srcset="assets/fotos/abraco-800.webp 800w, assets/fotos/abraco-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 370px" alt="Duas participantes se abraçando durante o encontro" width="1600" height="1067" loading="lazy" decoding="async">
-          </figure>
+    <!-- LÍDERES -->
+    <section id="lideres">
+      <div class="container lideres">
+        <figure class="lideres-foto reveal">
+          <img src="assets/fotos/lideres-1100.webp" srcset="assets/fotos/lideres-600.webp 600w, assets/fotos/lideres-1100.webp 1100w" sizes="(max-width: 980px) 100vw, 480px" alt="Jéssica e Graziele, líderes da ConstruFly, em frente ao telão com o logotipo" width="1100" height="1376" loading="lazy" decoding="async">
+        </figure>
+        <div class="lideres-texto reveal">
+          <span class="eyebrow">Quem conduz</span>
+          <h2 class="h2">As líderes da <span class="fly">ConstruFly</span></h2>
+          <p class="lideres-intro">A ConstruFly é conduzida por Jéssica e Graziele, que estão à frente da comunidade, dos encontros e da preparação do 2º ciclo.</p>
+          <div class="lider-cards">
+            <article class="lider">
+              <span class="lider-mark">J</span>
+              <div>
+                <h3>Jéssica</h3>
+                <p>Líder da ConstruFly</p>
+              </div>
+            </article>
+            <article class="lider">
+              <span class="lider-mark">G</span>
+              <div>
+                <h3>Graziele</h3>
+                <p>Líder da ConstruFly</p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>

@@ -332,7 +332,8 @@
       display: grid; place-items: center; font-family: "Barlow Condensed"; font-weight: 800; font-size: 1.5rem;
     }
     .lider h3 { font-size: 1.45rem; margin-bottom: 2px; }
-    .lider p { color: var(--muted); font-size: .95rem; }
+    .lider .lider-cargo { color: var(--text); font-weight: 500; font-size: .98rem; }
+    .lider .lider-pos { color: var(--muted); font-size: .85rem; margin-top: 2px; }
 
     @media (max-width: 980px) {
       .hero-grid, .split, .apply-grid, .lideres { grid-template-columns: 1fr; }
@@ -499,25 +500,27 @@
     <section id="lideres">
       <div class="container lideres">
         <figure class="lideres-foto reveal">
-          <img src="assets/fotos/lideres-1100.webp" srcset="assets/fotos/lideres-600.webp 600w, assets/fotos/lideres-1100.webp 1100w" sizes="(max-width: 980px) 100vw, 480px" alt="Jéssica e Graziele, líderes da ConstruFly, em frente ao telão com o logotipo" width="1100" height="1376" loading="lazy" decoding="async">
+          <img src="assets/fotos/lideres-1100.webp" srcset="assets/fotos/lideres-600.webp 600w, assets/fotos/lideres-1100.webp 1100w" sizes="(max-width: 980px) 100vw, 480px" alt="Graziele (à esquerda) e Jéssica (à direita), fundadoras da ConstruFly, em frente ao telão com o logotipo" width="1100" height="1376" loading="lazy" decoding="async">
         </figure>
         <div class="lideres-texto reveal">
           <span class="eyebrow">Quem conduz</span>
-          <h2 class="h2">As líderes da <span class="fly">ConstruFly</span></h2>
-          <p class="lideres-intro">A ConstruFly é conduzida por Jéssica e Graziele, que estão à frente da comunidade, dos encontros e da preparação do 2º ciclo.</p>
+          <h2 class="h2">As fundadoras da <span class="fly">ConstruFly</span></h2>
+          <p class="lideres-intro">A ConstruFly foi fundada por Jéssica e Graziele, que estão à frente da comunidade, dos encontros e da preparação do 2º ciclo.</p>
           <div class="lider-cards">
-            <article class="lider">
-              <span class="lider-mark">J</span>
-              <div>
-                <h3>Jéssica</h3>
-                <p>Líder da ConstruFly</p>
-              </div>
-            </article>
             <article class="lider">
               <span class="lider-mark">G</span>
               <div>
                 <h3>Graziele</h3>
-                <p>Líder da ConstruFly</p>
+                <p class="lider-cargo">Fundadora · Advisor de negócios</p>
+                <p class="lider-pos">Na foto, à esquerda</p>
+              </div>
+            </article>
+            <article class="lider">
+              <span class="lider-mark">J</span>
+              <div>
+                <h3>Jéssica</h3>
+                <p class="lider-cargo">Fundadora · Empresária contábil</p>
+                <p class="lider-pos">Na foto, à direita</p>
               </div>
             </article>
           </div>

@@ -62,7 +62,15 @@ escolha **Nova versão** e clique em **Implantar**. Assim a URL continua a mesma
 - Use os dados apenas para falar sobre a ConstruFly, como informado no formulário.
 - Se alguém pedir para sair da lista, apague a linha da pessoa.
 
-## Aviso no WhatsApp a cada cadastro (opcional)
+## Aviso por e-mail a cada cadastro (ativo)
+
+Preencha `EMAIL_AVISO` no `Código.gs` e publique uma nova versão (veja "Se alterar o script depois").
+No celular, ative as notificações do app Gmail para ser avisado na hora.
+
+## Aviso no WhatsApp a cada cadastro (opcional, ainda não ativado)
+
+> Em novembro de 2026 o CallMeBot não estava aceitando novos usuários ("bot cheio").
+> O código já está pronto: basta seguir os passos abaixo quando houver vagas.
 
 O aviso usa o [CallMeBot](https://www.callmebot.com/blog/free-api-whatsapp-messages/), serviço gratuito
 para uso pessoal que manda mensagens para o **seu próprio número**.
